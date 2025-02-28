@@ -17,6 +17,7 @@ app = dash.Dash(__name__,
                 external_stylesheets=[dbc.themes.BOOTSTRAP],
                 assets_folder='assets',
                 suppress_callback_exceptions=True)
+server = app.server
 
 def load_title_from_file(file_path="title.txt"):
     """Load the timeline title from a text file."""
