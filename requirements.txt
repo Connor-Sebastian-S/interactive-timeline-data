@@ -25,3 +25,4 @@ gender-guesser
 regex
 dash-extensions
 dash-cytoscape
+Pillow
