@@ -1,0 +1,126 @@
+
+.s-timeline-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.s-timeline-row {
+    display: flex;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.s-timeline-row::before {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 4px;
+    background: #0d6efd;
+    top: 50px;
+    left: 5%;
+    z-index: 0;
+}
+
+.s-timeline-row.right-to-left::before {
+    transform: scaleX(-1);
+}
+
+.s-timeline-row:last-child {
+    margin-bottom: 0;
+}
+
+.s-timeline-item {
+    flex: 1;
+    margin: 0 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.s-timeline-item-content {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.s-timeline-item-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.s-timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 4px solid #0d6efd;
+    border-radius: 50%;
+    bottom: -30px;
+    left: calc(50% - 10px);
+    z-index: 2;
+}
+
+.s-timeline-row.right-to-left .s-timeline-item::after {
+    top: -30px;
+    bottom: auto;
+}
+
+.s-timeline-date {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+
+.s-timeline-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.s-timeline-desc {
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* Media query for mobile */
+@media (max-width: 768px) {
+    .s-timeline-row {
+        flex-direction: column;
+    }
+    
+    .s-timeline-row::before {
+        height: 90%;
+        width: 4px;
+        left: 20px;
+        top: 5%;
+    }
+    
+    .s-timeline-item {
+        margin: 20px 0 20px 50px;
+    }
+    
+    .s-timeline-item::after {
+        left: -30px;
+        top: 20px;
+        bottom: auto;
+    }
+    
+    .s-timeline-row.right-to-left .s-timeline-item::after {
+        left: -30px;
+        top: 20px;
+    }
+}

@@ -1,0 +1,183 @@
+
+.zigzag-timeline {
+    width: 100%;
+    position: relative;
+    padding: 20px;
+}
+
+.zigzag-row {
+    display: flex;
+    position: relative;
+    margin-bottom: 50px; /* Fixed spacing between rows */
+    padding-bottom: 0;
+}
+
+/* Horizontal line through each row */
+.zigzag-row::before {
+    content: '';
+    position: absolute;
+    height: 4px;
+    background: #0d6efd;
+    top: 50%;
+    width: 95%;
+    z-index: 1;
+}
+
+/* Odd rows (1st, 3rd, etc) - left to right */
+.zigzag-row.odd::before {
+    left: 0;
+}
+
+/* Even rows (2nd, 4th, etc) - right to left */
+.zigzag-row.even::before {
+    right: 0;
+}
+
+/* Vertical connector between rows - with negative margins to bridge the gap */
+.row-connector {
+    height: 70px; /* Base height */
+    width: 4px;
+    background-color: #0d6efd;
+    margin-top: -25px; /* Pull up to overlap with row above */
+    margin-bottom: -25px; /* Extend down to overlap with row below */
+    z-index: 0;
+    position: relative; /* Needed for z-index to work */
+}
+
+/* For odd rows (left-to-right), connect from right side */
+.connector-odd-to-even {
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+/* For even rows (right-to-left), connect from left side */
+.connector-even-to-odd {
+    margin-left: 15px;
+    margin-right: auto;
+}
+
+.zigzag-item {
+    flex: 1;
+    margin: 0 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.zigzag-item-content {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.zigzag-item-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Remove all timeline circles */
+.zigzag-item::after {
+    display: none;
+}
+
+.zigzag-date {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+
+.zigzag-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.zigzag-desc {
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* Image navigation buttons */
+.image-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.image-nav-btn:hover {
+    opacity: 1;
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+/* Image container */
+.image-container {
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.image-counter {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
+/* Media query for mobile */
+@media (max-width: 768px) {
+    .zigzag-row {
+        flex-direction: column;
+    }
+    
+    .zigzag-row::before {
+        width: 4px;
+        height: 90%;
+        top: 5%;
+        left: 20px !important;
+        right: auto !important;
+    }
+    
+    .zigzag-item {
+        margin: 20px 0 20px 50px;
+    }
+    
+    .row-connector {
+        display: none; /* Hide custom connectors on mobile */
+    }
+}
